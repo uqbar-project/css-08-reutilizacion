@@ -5,3 +5,13 @@ html {
 body {
   font-family: 'Baloo Da 2', serif;
 }
+
+::-webkit-input-placeholder {
+  font-family: 'Baloo Da 2', serif;
+}
+:-moz-placeholder {
+  font-family: 'Baloo Da 2', serif;
+}
+::-moz-placeholder {
+  font-family: 'Baloo Da 2', serif;
+}
