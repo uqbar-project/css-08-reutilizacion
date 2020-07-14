@@ -28,8 +28,93 @@ De todas maneras, después de estar acostumbrados a trabajar en el paradigma OO,
 
 ## Técnica BEM: Block, Element, Modifier
 
+La técnica BEM consiste en que cada elemento HTML puede encontrarse en una jerarquía de 3 niveles:
+
+- block: representa una abstracción
+- element: forma parte de un block, semánticamente está ligado a él 
+- modifier: se utilizan para cambiar la apariencia o representar distintos estados de un elemento o un bloque.
+
+Por ejemplo, tendremos el bloque **form**, con un modificador **form-card** que representa la apariencia de una tarjeta. El bloque form tiene varios elementos, que no tienen sentido fuera del form:
+
+- **fila**: representa una fila de un formulario, y contiene diferentes inputs.
+- **input**: representa un campo editable para el usuario, tiene el modificador _full_ para indicar que toma el máximo ancho posible.
+
+### Definición de un identificador en BEM
+
+La idea es que el identificador se forme como
+
+- **Block**,
+- **Block__element**, 
+- **Block__element--modifier**, o
+- **Block--modifier**
+
+Es decir, utilizamos `__` para separar un bloque de un elemento, y `--` para separar un bloque o elemento de un modificador.
+
+### Buenos nombres
+
+Una cuestión importante es que evitaremos nombres demasiado específicos o crípticos: 
+
+- en lugar de `naranja` -> `primario` o `colorPrimario`
+- en lugar de `boton-de-20-pixeles` -> `chico`
+- en lugar de `ta-4-5` (textarea de 4 filas y 5 columnas) -> `comun`
+
+## Ventajas de BEM
+
+Esta convención de nombres ayuda a evitar que proliferen muchas clases, porque cada clase se adapta a un elemento o bloque particular. Es más fácil que nos animemos a tocar `form__input--full` que una clase que se llame `full`, porque nos da miedo el impacto que puede tener esa cascada: ¿qué representa semánticamente ese full en la aplicación? ¿estaré rompiendo `div`s que tengan una clase `full`, o una `table`?
+
+En el ejemplo, podemos ver dos archivos:
+
+- login.html: representa un formulario de login
+- contacto.html: representa un formulario de contacto
+
+Ambos tienen dos archivos de estilos:
+
+- estilos.css: definen cuestiones comunes para todas las páginas, como la tipografía, podríamos eventualmente cambiar nuestro color de fondo, etc.
+- form.css: arma los estilos propios de un formulario. **Todas las páginas que tengan formulario pueden usar esta hoja de estilos**.
+
+Así podemos ver que ambos tienen el mismo look & feel, y al cambiar una configuración esto tiene impacto en todas las páginas que usen el formulario:
+
+![cambiando los forms](./images/changingForms.gif)
+
+## Múltiples clases
+
+Un detalle adicional es que el `textarea` necesita una configuración adicional al ser un tipo de tag diferente, pero podemos definirle más de una clase:
+
+```html
+<textarea placeholder="El motivo de su consulta" class="form__input--full form__textarea"></textarea>
+```
+
+En la hoja de estilos tendremos dos clases, la de textarea agrega información:
+
+```css
+.form__input--full {
+  width: 100%;
+  font-size: 0.8em;
+}
+
+.form__textarea--full {
+  padding: 0.5rem;
+}
+```
+
+Incluso tuvimos que modificar el placeholder en el archivo estilos.css, para que no se viera con un font feo:
+
+```css
+:-moz-placeholder {
+  font-family: 'Baloo Da 2', serif;
+}
+::-moz-placeholder {
+  font-family: 'Baloo Da 2', serif;
+}
+```
+
+## Resumen
+
+Hay herramientas que nos pueden ayudar a la hora de reutilizar definiciones de estilos en nuestros archivos html: trabajar en cascada definiciones generales y específicas, agrupar ideas en diferentes clases, y utilizar técnicas como BEM (hay otras como OOCSS o SMACSS) son algunas de ellas, aunque sin dudas todavía queda un largo camino por recorrer para mejorar la mantenibilidad de nuestro css.
+
 ## Material adicional
 
 - [BEM 101](https://css-tricks.com/bem-101/)
 - [Building a Scalable CSS Architecture with BEM and Utility Classes](https://css-tricks.com/building-a-scalable-css-architecture-with-bem-and-utility-classes/)
 - [Get BEM](http://getbem.com/)
+- [How to Organize Your CSS with a Modular Architecture (OOCSS, BEM, SMACSS)](https://snipcart.com/blog/organize-css-modular-architecture)
