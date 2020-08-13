@@ -34,10 +34,13 @@ La técnica BEM consiste en que cada elemento HTML puede encontrarse en una jera
 - element: forma parte de un block, semánticamente está ligado a él 
 - modifier: se utilizan para cambiar la apariencia o representar distintos estados de un elemento o un bloque.
 
-Por ejemplo, tendremos el bloque **form**, con un modificador **form-card** que representa la apariencia de una tarjeta. El bloque form tiene varios elementos, que no tienen sentido fuera del form:
+Por ejemplo, tendremos el bloque **form**, con un modificador **form--card** que representa la apariencia de una tarjeta. 
+
+El bloque form tiene varios elementos, que no tienen sentido fuera del form:
 
 - **fila**: representa una fila de un formulario, y contiene diferentes inputs.
 - **input**: representa un campo editable para el usuario, tiene el modificador _full_ para indicar que toma el máximo ancho posible.
+- otros elementos que dependen del form son: `titulo`, `logo`, `botonera`, `boton`, `textarea`, etc. A cada uno le anteponemos el prefijo `form__`, por ejemplo: `form__boton` y opcionalmente algún modificador, como `form__boton--primario`. Esto permite configurar estilos separados para un botón que forma parte de un formulario y el que está en otro tipo de página.
 
 ### Definición de un identificador en BEM
 
