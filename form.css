@@ -2,8 +2,8 @@
 .form--card {
   font-size: 1.2em;
   width: 100%;
-  text-align: center;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
 }
@@ -23,9 +23,16 @@
   width: 80%;
 }
 
+.form__input--full, .form__input--medium {
+  font-size: 0.9em;
+}
+
 .form__input--full {
   width: 100%;
-  font-size: 0.8em;
+}
+
+.form__input--medium {
+  width: 50%;
 }
 
 .form__botonera {
@@ -50,6 +57,6 @@
 /* Agregado por el formulario de contacto */
 
 .form__textarea--full {
-  padding: 0.5rem;
+  padding: 0.4rem;
 }
 

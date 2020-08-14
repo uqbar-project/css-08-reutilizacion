@@ -111,6 +111,80 @@ Incluso tuvimos que modificar el placeholder en el archivo estilos.css, para que
 }
 ```
 
+## Cómo hacer para reutilizar partes para un estilo
+
+Si el usuario nos pide que el teléfono de contacto tenga un tamaño menor que el resto de los campos del formulario, podemos definir una nueva class, que será `form__input` pero que tendrá un modificador diferente:
+
+```css
+.form__input--medium {
+  font-size: 0.9em;
+  width: 50%;
+}
+```
+
+El tema es que ya tenemos una definición `.form__input--full` que tiene algo en común:
+
+```css
+.form__input--full {
+  font-size: 0.9em;
+  width: 100%;
+}
+```
+
+El font-size lo podemos compartir entre ambas clases, de esta manera:
+
+```css
+.form__input--full, .form__input--medium {
+  font-size: 0.9em;
+}
+
+.form__input--full {
+  width: 100%;
+}
+
+.form__input--medium {
+  width: 50%;
+}
+```
+
+Y el html quedaría
+
+```html
+<div class="form__fila">
+  <input type="text" placeholder="Nombre completo" class="form__input--full">
+</div>
+<div class="form__fila">
+  <input type="text" placeholder="Teléfono de contacto" class="form__input--medium">
+</div>
+```
+
+Otra opción es utilizar una clase específica para los `form__input` y modificadores adicionales:
+
+```css
+.form__input {
+  font-size: 0.9em;
+}
+
+.form__input--full {
+  width: 100%;
+}
+
+.form__input--medium {
+  width: 50%;
+}
+```
+
+Esto requiere que nuestra definición en el html sea más verbosa:
+
+```html
+<div class="form__fila">
+  <input type="text" placeholder="Nombre completo" class="form__input form__input--full">
+</div>
+<div class="form__fila">
+  <input type="text" placeholder="Teléfono de contacto" class="form__input form__input--medium">
+</div>
+```
+
 ## Resumen
 
 Hay herramientas que nos pueden ayudar a la hora de reutilizar definiciones de estilos en nuestros archivos html: trabajar en cascada definiciones generales y específicas, agrupar ideas en diferentes clases, y utilizar técnicas como BEM (hay otras como OOCSS o SMACSS) son algunas de ellas, aunque sin dudas todavía queda un largo camino por recorrer para mejorar la mantenibilidad de nuestro css.
