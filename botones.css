@@ -1,0 +1,20 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+.form__button {
+  border-radius: 10px;
+  width: 8em;
+  height: 2.5em;
+  font-size: 1.2em;
+}
+
+.form__button--primary {
+  background-color: steelblue;
+  color: white;
+}
+
+.form__button--secondary {
+  background-color: darkslategray;
+  color: white;
+}
